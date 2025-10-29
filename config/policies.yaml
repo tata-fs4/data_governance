@@ -1,0 +1,65 @@
+regulations:
+  lgpd:
+    principles:
+      - finalidade
+      - adequacao
+      - necessidade
+      - transparencia
+      - seguranca
+  iso_27001:
+    controls:
+      - A.5 Information security policies
+      - A.9 Access control
+      - A.12 Operations security
+      - A.18 Compliance
+access_policies:
+  - name: financeiro-leitura
+    description: Acesso somente leitura para equipe financeira
+    roles:
+      - finance_analyst
+    datasets:
+      - transactions
+    permissions:
+      - read
+  - name: governanca-completo
+    description: Acesso completo para time de governança de dados
+    roles:
+      - data_governance
+    datasets:
+      - customers
+      - transactions
+    permissions:
+      - read
+      - write
+      - manage
+quality_rules:
+  customers:
+    - name: consentimento_atualizado
+      description: Data de consentimento deve estar presente e atualizada nos últimos 18 meses
+      column: last_update
+      type: recency
+      max_months: 18
+    - name: email_valido
+      description: Emails devem conter arroba e dominio
+      column: email
+      type: pattern
+      regex: "^[^@\s]+@[^@\s]+\.[^@\s]+$"
+  transactions:
+    - name: valor_positivo
+      description: Valor da transação deve ser maior que zero
+      column: amount
+      type: numeric_min
+      min_value: 0
+lineage:
+  - dataset: customers
+    sources:
+      - data/raw/customers.csv
+    owners:
+      - privacy_officer
+    criticality: alta
+  - dataset: transactions
+    sources:
+      - data/raw/transactions.csv
+    owners:
+      - finance_lead
+    criticality: media
