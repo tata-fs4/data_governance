@@ -1,0 +1,7 @@
+customer_id,name,email,phone,consent_status,last_update
+1,Ana Silva,ana.silva@example.com,+5511999999999,granted,2024-01-10
+2,Bruno Souza,bruno.souza@example.com,+5521999999999,revoked,2023-12-05
+3,Carla Dias,carla.dias@example.com,+5531999999999,granted,2024-02-15
+4,Diego Lima,diego.lima@example.com,+5541999999999,pending,2022-11-30
+5,Elisa Ramos,elisa.ramos@example.com,+5551999999999,granted,2024-03-01
+  
