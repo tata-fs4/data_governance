@@ -1,42 +1,53 @@
-# Projeto de Governança de Dados
+# Data Governance Project
 
-Este projeto demonstra um pipeline de governança de dados orientado a compliance, com catálogo, controle de acesso, lineage e validações automáticas de qualidade. O foco é alinhar a entrega de dados às diretrizes da LGPD e da ISO 27001.
+This project demonstrates a data governance pipeline focused on compliance, featuring data cataloging, access control, lineage tracking, and automated quality validations.  
+The goal is to align data delivery with **LGPD** and **ISO 27001** guidelines.
 
-## Estrutura
+## Structure
 
 ```
 data_governance/
 ├── config/
-│   └── policies.yaml        # Políticas regulatórias, regras de acesso e qualidade
+│ └── policies.yaml # Regulatory policies, access rules, quality rules
 ├── data/
-│   ├── raw/                 # Fontes originais mockadas
-│   └── processed/           # Saídas governadas pelo pipeline
-├── logs/                    # Registros de auditoria
+│ ├── raw/ # Mocked source data
+│ └── processed/ # Governed outputs produced by the pipeline
+├── logs/ # Audit records
 ├── src/
-│   └── data_governance/     # Código fonte do framework
-│       ├── access_control.py
-│       ├── catalog.py
-│       ├── lineage.py
-│       ├── pipeline.py
-│       ├── policies.py
-│       └── quality.py
+│ └── data_governance/ # Framework implementation
+│ ├── access_control.py
+│ ├── catalog.py
+│ ├── lineage.py
+│ ├── pipeline.py
+│ ├── policies.py
+│ └── quality.py
 └── README.md
 ```
 
-## Funcionalidades
 
-- **Catálogo de Dados**: registra ativos com metadados, sensibilidade, tags e aderência regulatória.
-- **Controle de Acesso**: aplica políticas baseadas em papéis alinhadas a LGPD e ISO 27001.
-- **Lineage**: rastreia transformações e relaciona fontes e outputs para auditoria.
-- **Qualidade Automática**: valida recência de consentimento, padrões de e-mail e valores monetários.
-- **Auditoria**: gera logs JSON com evidências de execução, políticas carregadas e issues de qualidade.
+## Features
 
-## Executando o Pipeline
+- **Data Catalog**  
+  Registers assets with metadata, sensitivity classification, tags, and regulatory compliance attributes.
 
-1. Crie um ambiente virtual opcionalmente e instale as dependências:
+- **Access Control**  
+  Enforces role-based policies aligned with LGPD and ISO 27001 requirements.
+
+- **Lineage Tracking**  
+  Captures end-to-end transformations, mapping inputs and outputs for auditability.
+
+- **Automated Data Quality**  
+  Validates consent recency, email format, monetary values, and other business rules.
+
+- **Auditing**  
+  Generates JSON logs containing evidence of execution, loaded policies, and identified quality issues.
+
+## Running the Pipeline
+
+1. (Optional) Create a virtual environment and install dependencies:
    ```bash
    pip install pandas pyyaml
-   ```
+
 2. Execute o pipeline:
    ```bash
    python -m data_governance.src.data_governance.pipeline
@@ -51,13 +62,16 @@ audit_log = run_pipeline("data_governance")
 print(audit_log)
 ```
 
-## Conformidade
+## Compliance
 
-- **LGPD**: o pipeline filtra clientes sem consentimento válido e rastreia a última atualização.
-- **ISO 27001**: políticas de acesso documentadas e controle de lineage fornecem evidências para auditorias.
+### LGPD
+- The pipeline filters customers without valid consent and tracks the latest update timestamp.
 
-## Próximos Passos
+### ISO 27001
+- Documented access policies and lineage records provide evidence for security and compliance audits.
 
-- Integrar com um catálogo corporativo (ex.: Apache Atlas).
-- Automatizar ingestão de políticas de um GRC.
-- Expandir regras de qualidade com perfis estatísticos.
+## Next Steps
+
+- Integrate with a corporate catalog (e.g., Apache Atlas).
+- Automate ingestion of policies from a GRC platform.
+- Extend quality rules with statistical profiling and anomaly detection.
